@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hypertension Questionnaire</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>Questionnaire</h1>
+    <p><strong>Study title: Risk Factors of Hypertension among adult patients at Mandera County Referral Hospital, Kenya</strong></p>
+
+    <form id="hypertensionForm">
+
+      <!-- Section 1: Socio-Demographic Information -->
+      <fieldset>
+        <p class="section-title">Section 1: Socio-Demographic Information</p>
+
+        <label>1. Age:</label>
+        <select name="age" required>
+          <option value="">Select your age range</option>
+          <option value="18-29">18-29</option>
+          <option value="30-39">30-39</option>
+          <option value="40-49">40-49</option>
+          <option value="50-59">50-59</option>
+          <option value="60-69">60-69</option>
+          <option value="70+">70+</option>
+        </select>
+
+        <label>2. Gender:</label>
+        <select name="gender" required>
+          <option value="">Select gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+
+        <label>3. Marital Status:</label>
+        <select name="maritalStatus" required>
+          <option value="">Select status</option>
+          <option value="Single">Single</option>
+          <option value="Divorced">Divorced</option>
+          <option value="Widowed">Widowed</option>
+          <option value="Married_monogamy">Married (Monogamy)</option>
+          <option value="Married_polygamy">Married (Polygamy)</option>
+        </select>
+
+        <label>4. Highest Education Level:</label>
+        <select name="education" required>
+          <option value="">Select one</option>
+          <option value="None">Never attended school</option>
+          <option value="Primary">Completed primary school</option>
+          <option value="Secondary">Completed secondary school</option>
+          <option value="Tertiary">Tertiary (College/University)</option>
+        </select>
+
+        <label>5. Occupation:</label>
+        <select name="occupation" required>
+          <option value="">Select occupation</option>
+          <option value="Unemployed">Unemployed</option>
+          <option value="Self-employed">Self-employed</option>
+          <option value="Formal">Formal employment</option>
+          <option value="Informal">Informal employment</option>
+          <option value="Retired">Retired</option>
+          <option value="Student">Student</option>
+        </select>
+
+        <label>6. Area of Residence:</label>
+        <select name="residence" required>
+          <option value="">Select area</option>
+          <option value="Urban">Urban</option>
+          <option value="Rural">Rural</option>
+          <option value="Semi-urban">Semi-urban</option>
+        </select>
+
+        <label>7. Has any of your close relatives ever been diagnosed with hypertension?</label>
+        <select name="familyHistory" id="familyHistory" required onchange="toggleRelative()">
+          <option value="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+
+      <!-- Only visible if "Yes" is selected -->
+  <div class="form-group" id="family_relation_section" style="display: none;">
+    <label for="family_relation">who is this person?</label>
+    <select name="family_relation" id="family_relation" onchange="checkOtherFamilyRelation(this)">
+      <option value="">-- Select --</option>
+      <option value="Father">Father</option>
+      <option value="Mother">Mother</option>
+      <option value="Brother/Sister">Brother/Sister</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+
+  <!-- Only visible if "Other" is selected -->
+  <div class="form-group" id="family_relation_other_div" style="display: none;">
+    <label for="family_relation_other">Please specify:</label>
+    <input type="text" name="family_relation_other" id="family_relation_other" placeholder="Enter relation">
+  </div>
+      </fieldset>
+
+      <!-- Section 2: Prevalence -->
+      <fieldset>
+       <p class="section-title">Section 2: Prevalence of Hypertension</p>
+
+        <label>1. Have you ever been diagnosed with hypertension?</label>
+        <select name="diagnosed" id="diagnosed" required onchange="toggleDiagnosisDetails()">
+          <option value="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+
+        <div id="diagnosisDetails" style="display:none">
+          <label>2. For how long?</label>
+          <select name="duration">
+            <option value="">Select</option>
+            <option value="<1yr">Less than 1 year</option>
+            <option value="1-5yrs">1 to 5 years</option>
+            <option value=">5yrs">Over 5 years</option>
+          </select>
+
+          <label>3. Have you used medication in the last 2 weeks?</label>
+          <select name="medicated">
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+      </fieldset>
+
+      <!-- Section 3: Knowledge -->
+      <fieldset>
+        <p class="section-title">Section 3: Knowledge of Hypertension (Likert Scale)</p>
+        <p>Use a scale of 1 (Strongly Disagree) to 5 (Strongly Agree)</p>
+        <div class="likert">
+          <label>1. Hypertension is a major health concern:</label>
+          <select name="k1" required><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+
+          <label>2. Hypertension causes heart disease/stroke:</label>
+          <select name="k2" required><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+
+          <label>3. Regular medication helps control hypertension:</label>
+          <select name="k3" required><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+
+          <label>4. Healthy diet helps prevent hypertension:</label>
+          <select name="k4" required><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+
+          <label>5. Physical activity helps reduce hypertension:</label>
+          <select name="k5" required><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+
+          <label>6. Smoking increases hypertension risk:</label>
+          <select name="k6" required><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+
+          <label>7. Hypertension can occur without family history:</label>
+          <select name="k7" required><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+
+          <label>8. Alcohol doesn’t affect hypertension:</label>
+          <select name="k8" required><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+
+          <label>9. Stress causes hypertension:</label>
+          <select name="k9" required><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+
+          <label>10. Lifestyle changes alone can control hypertension:</label>
+          <select name="k10" required><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+        </div>
+      </fieldset>
+
+      <!-- Section 4: Lifestyle -->
+      <fieldset>
+       <p class="section-title">Section 4: Lifestyle Factors</p>
+        <label>1.How often do you exercise?</label>
+        <select name="exercise" required>
+          <option value="">Select</option>
+          <option>Every day</option>
+          <option>Several times per week</option>
+          <option>Occasionally</option>
+          <option>Never</option>
+        </select>
+
+        <label>2.How frequently do you take fruits and vegetables?</label>
+        <select name="diet" required>
+          <option value="">Select</option>
+          <option>Every day</option>
+          <option>Several times per week</option>
+          <option>Occasionally</option>
+          <option>Never</option>
+        </select>
+
+        <label>3.Are you currently using tobacco </label>
+        <select name="tobacco" id="tobacco" required onchange="toggleTobaccoFreq()">
+          <option value="">Select</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+
+        <div id="tobaccoFreq" style="display:none">
+          <label>How frequently?</label>
+          <select name="tobaccoFrequency">
+            <option value="">Select</option>
+            <option>Daily</option>
+            <option>Occasionally</option>
+          </select>
+        </div>
+
+        <label>4.	Do you consume alcoholic beverages</label>
+        <select name="alcohol" id="alcohol" required onchange="toggleAlcoholFreq()">
+          <option value="">Select</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+
+        <div id="alcoholFreq" style="display:none">
+          <label>How frequently?</label>
+          <select name="alcoholFrequency">
+            <option value="">Select</option>
+            <option>Daily</option>
+            <option>Occasionally</option>
+          </select>
+        </div>
+      </fieldset>
+
+      <!-- Section 5: Health-Seeking Behavior -->
+      <fieldset>
+        <p class="section-title">Section 5: Health-Seeking Behavior</p>
+        <label>1.How often do you visit a healthcare facility for check-ups:</label>
+        <select name="checkups" required>
+          <option value="">Select</option>
+          <option>Regularly</option>
+          <option>Occasionally</option>
+          <option>Only when sick</option>
+          <option>Never</option>
+        </select>
+
+        <label>2.	Have you ever been counseled on lifestyle changes to manage or prevent hypertension</label>
+        <select name="counsel" required>
+          <option value="">Select</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+
+        <label>3.	Have you previously had your blood pressure assessed during a clinic or hospital visit?</label>
+        <select name="bpAssess" id="bpAssess" required onchange="toggleBPCheck()">
+          <option value="">Select</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+
+        <div id="bpCheck" style="display:none">
+          <label>4. When was the last BP check?</label>
+          <select name="bpLast">
+            <option value="">Select</option>
+            <option>Last month</option>
+            <option>1–6 months ago</option>
+            <option>>6 months ago</option>
+            <option>Can’t remember</option>
+          </select>
+        </div>
+    </fieldset>
+
+      <!-- Section 6: Clinical Measurements -->
+      <fieldset>
+       <p class="section-title">Section 6: Clinical Measurements (For Researcher Use Only)</p>
+        <label for="systolic">Systolic BP (mmHg):</label>
+<input type="number" id="systolic" name="systolic" min="0" placeholder="e.g. 120">
+
+<label for="diastolic">Diastolic BP (mmHg):</label>
+<input type="number" id="diastolic" name="diastolic" min="0" placeholder="e.g. 80">
+
+<label for="bpClassification">Blood Pressure Classification:</label>
+<input type="text" id="bpClassification" name="bpClassification" readonly placeholder="Auto-classified">
+       
+<label for="weight">Weight (in kilograms):</label>
+<input type="number" id="weight" name="weight" step="0.1" min="0" placeholder="e.g. 70">
+
+ <label for="height">Height (in meters):</label>
+<input type="number" id="height" name="height" step="0.01" min="0" placeholder="e.g. 1.75">
+
+
+<label for="bmi">BMI:</label>
+<input type="text" id="bmi" name="bmi" readonly placeholder="Auto-calculated">
+
+<label for="bmiClassification">BMI Classification:</label>
+<input type="text" id="bmiClassification" name="bmiClassification" readonly placeholder="Auto-classified">
+
+
+      </fieldset>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
