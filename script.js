@@ -5,7 +5,8 @@ document.getElementById("hypertensionForm").addEventListener("submit", function 
   const form = this;
   const formData = new FormData(form);
 
-  fetch("https://script.google.com/macros/s/AKfycbwg15l1wEg3UuVsX20KiU5LWABu3Esr80MHYINa2fPnTkA6zxJat2hbKr7ky3p-Bwf2UA/exec", {
+  // ✅ This is your new correct Web App URL
+  fetch("https://script.google.com/macros/s/AKfycbw1W1g9eJlYaqsOy6PB2hAua0SFIPkHuI_-8FeAuUagou8yXnNPE-OBEfyeTEbfBurX/exec", {
     method: "POST",
     body: formData,
   })
